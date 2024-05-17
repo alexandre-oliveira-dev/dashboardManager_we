@@ -10,8 +10,7 @@ export default function NavBarComponent() {
         color={"#fff"}
         fontWeight={600}
       >
-        Olá, seja bem vindo(a){' '}
-        {'ale@gmail.com'}
+        Olá, seja bem vindo(a) {"ale@gmail.com"}
       </Text>
       <Link
         href="/dashboard"
@@ -32,7 +31,7 @@ export default function NavBarComponent() {
         Inicio
       </Link>
 
-      <Button></Button>
+      <Button className="btn-logout">Sair</Button>
     </nav>
   );
 }

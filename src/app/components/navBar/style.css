@@ -13,3 +13,10 @@
 .link-btn-navbar:hover {
     background-color: #292525 !important;
 }
+
+
+.btn-logout {
+    position: absolute !important;
+    bottom: 50px;
+
+}
