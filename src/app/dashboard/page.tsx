@@ -81,17 +81,19 @@ export default function Dashboard() {
 
                         <Td>
                           <div style={{display: "flex", gap: 10}}>
-                            <Button
+                            <Link
+                              href={"/dashboard/edit"}
                               style={{
                                 width: "40px",
                                 height: "40px",
                                 display: "grid",
                                 placeContent: "center",
                                 backgroundColor: "gold",
+                                borderRadius:"5px"
                               }}
                             >
                               <FiEdit color="#fff"></FiEdit>
-                            </Button>
+                            </Link>
                             <Button
                               style={{
                                 width: "40px",

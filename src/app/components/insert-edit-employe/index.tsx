@@ -5,6 +5,7 @@ import {
   FormLabel,
   Input,
   Select,
+  Box,
 } from "@chakra-ui/react";
 import "./style.css";
 
@@ -23,47 +24,59 @@ export default function InsertOrEditComponent() {
   }
   return (
     <>
-      <form
-        onSubmit={handleSubmit}
+      <Box
         style={{
           width: "60%",
+          backgroundColor: "#fff",
+          borderRadius: 10,
+          padding: "3rem",
           display: "flex",
-          flexWrap: "wrap",
-          gap: "2rem",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <FormControl isRequired>
-          <FormLabel color={"#fff"}>Nome do funcionario</FormLabel>
-          <Input name="name" color={"#FFF"} type="name" />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel color={"#fff"}>Cargo</FormLabel>
-          <Input name="cargo" color={"#FFF"} type="text" />
-        </FormControl>
-        <div
-          style={{display: "flex", gap: 20, width: "100%", flexWrap: "wrap"}}
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            width: "100%",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "2rem",
+          }}
         >
-          <FormControl isRequired style={{flex: 1}}>
-            <FormLabel color={"#fff"}>Departamento</FormLabel>
-            <Select name="dep" placeholder="Selecione">
-              <option style={{color: "#000"}} value="rh">
-                Rh
-              </option>
-              <option style={{color: "#000"}} value="Software">
-                Software
-              </option>
-              <option style={{color: "#000"}} value="Financeiro">
-                Financeiro
-              </option>
-            </Select>
+          <FormControl isRequired>
+            <FormLabel color={"#121212"}>Nome do funcionario</FormLabel>
+            <Input name="name" color={"#121212"} type="name" />
           </FormControl>
-          <FormControl isRequired style={{flex: 1}}>
-            <FormLabel color={"#fff"}>Data de admissão</FormLabel>
-            <Input name="date" type="date" color={"#fff"} />
+          <FormControl isRequired>
+            <FormLabel color={"#121212"}>Cargo</FormLabel>
+            <Input name="cargo" color={"#121212"} type="text" />
           </FormControl>
-        </div>
-        <Input color={"#fff"} type="submit" value="Finalizar"></Input>
-      </form>
+          <div
+            style={{display: "flex", gap: 20, width: "100%", flexWrap: "wrap"}}
+          >
+            <FormControl isRequired style={{flex: 1}}>
+              <FormLabel color={"#121212"}>Departamento</FormLabel>
+              <Select name="dep" placeholder="Selecione">
+                <option style={{color: "#000"}} value="rh">
+                  Rh
+                </option>
+                <option style={{color: "#000"}} value="Software">
+                  Software
+                </option>
+                <option style={{color: "#000"}} value="Financeiro">
+                  Financeiro
+                </option>
+              </Select>
+            </FormControl>
+            <FormControl isRequired style={{flex: 1}}>
+              <FormLabel color={"#121212"}>Data de admissão</FormLabel>
+              <Input name="date" type="date" color={"#121212"} />
+            </FormControl>
+          </div>
+          <Input className="submit-btn" color={"#121212"} type="submit" value="Finalizar"></Input>
+        </form>
+      </Box>
     </>
   );
 }

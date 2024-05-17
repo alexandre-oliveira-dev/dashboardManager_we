@@ -5,12 +5,13 @@ export default function NavBarComponent() {
   return (
     <nav className="nav-bar">
       <Text
-        fontSize={"4xl"}
+        fontSize={"1xl"}
         textAlign={"center"}
         color={"#fff"}
         fontWeight={600}
       >
-        Employes Manager
+        Olá, seja bem vindo(a){' '}
+        {'ale@gmail.com'}
       </Text>
       <Link
         href="/dashboard"
@@ -30,6 +31,8 @@ export default function NavBarComponent() {
       >
         Inicio
       </Link>
+
+      <Button></Button>
     </nav>
   );
 }
