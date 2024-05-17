@@ -1,0 +1,35 @@
+.container-dashboard {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #121212;
+    display: flex;
+}
+
+
+
+.table-box {
+    width: 100%;
+    border-radius: 10px;
+    border: 0px;
+}
+
+.thead {
+    border: none !important;
+    background-color: #292929;
+    height: 50px;
+}
+
+.thead>tr>th {
+    font-size: 17px;
+    color: aliceblue;
+    border: 0;
+}
+
+.tbody>tr>td {
+    flex: 1;
+    color: #fff;
+    font-size: 17px;
+    height: 70px;
+    border: 0;
+    background-color: rgb(63, 63, 63);
+}
