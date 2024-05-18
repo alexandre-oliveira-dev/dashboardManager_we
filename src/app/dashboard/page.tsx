@@ -19,7 +19,6 @@ import {FiEdit, FiTrash} from "react-icons/fi";
 import MainSectionComponent from "@/app/components/mainSection/mainSection.component";
 import React, {useEffect, useState} from "react";
 import {EmployesProps, deleteEmploye, getEmployes} from "@/service/routes";
-import {useRouter} from "next/navigation";
 import {useAuth} from "../useAuth";
 
 export default function Dashboard() {
@@ -46,7 +45,9 @@ export default function Dashboard() {
 
   async function refetch() {
     setLoad(true);
-    const newDate = (await getEmployes().finally(() => setLoad(false))).data;
+    const newDate = (
+      await getEmployes(5, user?.email).finally(() => setLoad(false))
+    ).data;
     return setData(newDate?.data);
   }
 
@@ -63,7 +64,7 @@ export default function Dashboard() {
               marginLeft: "5px",
             }}
             onClick={async () => {
-              const res = await getEmployes(i + 1).finally(() =>
+              const res = await getEmployes(i + 1, user?.email).finally(() =>
                 setLoad(false)
               );
               setData(res?.data?.data);

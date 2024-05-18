@@ -15,15 +15,14 @@ import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import {app} from "../auth/firebase";
 import {useRouter} from "next/navigation";
 
-const auth = getAuth(app);
-
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const toast = useToast();
   const {push} = useRouter();
+  const auth = getAuth(app);
 
-  async function login(event: any) {
+  async function createUser(event: any) {
     event.preventDefault();
 
     if (email && password) {
@@ -54,7 +53,11 @@ export default function Home() {
       >
         <Text fontSize={"4xl"}>Cadastrar</Text>
 
-        <form onSubmit={login} className="form-login" style={{width: "70%"}}>
+        <form
+          onSubmit={createUser}
+          className="form-login"
+          style={{width: "70%"}}
+        >
           <FormControl isRequired>
             <FormLabel color={"#fff"}>Email</FormLabel>
             <Input

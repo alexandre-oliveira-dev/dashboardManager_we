@@ -30,7 +30,7 @@ export type EmployesProps = {
 }
 
 const getEmployes = async (page?:number, userId?:string) => {
-    const res:EmployesProps = await api.get('/employes',{params:{page:page || 1,userId}})
+    const res:EmployesProps = await api.get('/employes',{params:{page:page || 1,userId:userId}})
     return res
 }
 const getEmploye = async (id:string) => {

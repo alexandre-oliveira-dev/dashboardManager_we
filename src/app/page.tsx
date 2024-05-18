@@ -8,13 +8,12 @@ import {app} from "./auth/firebase";
 import {useRouter} from "next/navigation";
 import {useAuth} from "./useAuth";
 
-const auth = getAuth(app);
-
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const {push} = useRouter();
   const {user} = useAuth();
+  const auth = getAuth(app);
 
   if (user) {
     return push("/dashboard");
