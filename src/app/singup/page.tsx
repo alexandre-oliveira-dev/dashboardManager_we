@@ -1,41 +1,41 @@
 "use client";
 
-import {Box, FormControl, FormLabel, Input, Link, Text} from "@chakra-ui/react";
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Link,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import {useState} from "react";
-import "./style.css";
-import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
-import {app} from "./auth/firebase";
+import "../style.css";
+import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+import {app} from "../auth/firebase";
 import {useRouter} from "next/navigation";
-import {useAuth} from "./useAuth";
 
 const auth = getAuth(app);
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const toast = useToast();
   const {push} = useRouter();
-  const {user} = useAuth();
-
-  if (user) {
-    return push("/dashboard");
-  }
 
   async function login(event: any) {
     event.preventDefault();
 
     if (email && password) {
-      await signInWithEmailAndPassword(auth, email, password).then(
-        (value: any) => {
-          localStorage.setItem(
-            "user",
-            JSON.stringify({
-              email: value.user.email,
-              token: value.user.accessToken,
-            })
-          );
-          push("/dashboard");
-        }
-      );
+      await createUserWithEmailAndPassword(auth, email, password)
+        .then(() => push("/"))
+        .catch((err: string) => {
+          const error = `${err}`;
+          toast({
+            title: `${error.split("Firebase: Error")[1]}`,
+            status: "error",
+          });
+        });
     }
   }
   return (
@@ -52,7 +52,8 @@ export default function Home() {
           alignItems: "center",
         }}
       >
-        <Text fontSize={"4xl"}>Entrar</Text>
+        <Text fontSize={"4xl"}>Cadastrar</Text>
+
         <form onSubmit={login} className="form-login" style={{width: "70%"}}>
           <FormControl isRequired>
             <FormLabel color={"#fff"}>Email</FormLabel>
@@ -76,10 +77,9 @@ export default function Home() {
             _hover={{backgroundColor: "#fff", color: "#000"}}
             type="submit"
             color={"#fff"}
-            value="Entrar"
-            cursor={"pointer"}
+            value="Cadastrar"
           ></Input>
-          <Link href="./singup">cadastrar</Link>
+          <Link href="/">Entrar</Link>
         </form>
       </Box>
     </div>

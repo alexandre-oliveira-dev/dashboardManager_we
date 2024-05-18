@@ -1,27 +1,91 @@
 "use client";
 import {
   FormControl,
-  FormHelperText,
   FormLabel,
   Input,
   Select,
   Box,
+  useToast,
 } from "@chakra-ui/react";
 import "./style.css";
+import {Employes, createEmploye, updateEmploye} from "@/service/routes";
+import {useEffect, useState} from "react";
+import dayjs from "dayjs";
+import {useRouter} from "next/navigation";
+import {useAuth} from "@/app/useAuth";
 
-export default function InsertOrEditComponent() {
-  function handleSubmit(event: any) {
+interface InsertProps {
+  data?: Employes["data"] | undefined;
+  isCreate: boolean;
+}
+
+export default function InsertOrEditComponent({data, isCreate}: InsertProps) {
+  const toast = useToast();
+  const [name, setName] = useState("");
+  const [office, setOffice] = useState("");
+  const [departament, setDepartament] = useState("");
+  const [admissionDate, setAdmissionDate] = useState<string | undefined>();
+  const {refresh} = useRouter();
+  const {user} = useAuth();
+
+  useEffect(() => {
+    async function setInitialValues() {
+      if (data && !isCreate) {
+        setName(data.name);
+        setOffice(data.office);
+        setDepartament(data.departament);
+        setAdmissionDate(data.admissionDate);
+      }
+    }
+    setInitialValues();
+  }, [data, isCreate]);
+
+  async function handleSubmit(event: any) {
     event.preventDefault();
-    const formData = new FormData(event.target);
 
-    const payload = {
-      name: formData.get("name"),
-      cargo: formData.get("cargo"),
-      dep: formData.get("dep"),
-      date: formData.get("date"),
+    const payload: Employes["data"] = {
+      name,
+      admissionDate: dayjs(admissionDate).toISOString(),
+      departament,
+      office,
+      userId: user?.email,
     };
-    console.log(payload);
+
+    try {
+      if (isCreate) {
+        await createEmploye(payload).then(() => {
+          toast({
+            title: "Funcionario criado com sucesso",
+            isClosable: true,
+            duration: 2000,
+            status: "success",
+            onCloseComplete: () => {
+              setName("");
+              setOffice("");
+              setDepartament("");
+              setAdmissionDate("");
+            },
+          });
+        });
+        return;
+      }
+      if (data?._id)
+        await updateEmploye(data?._id, payload).then(() => {
+          toast({
+            title: "Funcionario editado com sucesso",
+            isClosable: true,
+            duration: 2000,
+            status: "success",
+            onCloseComplete: () => {
+              refresh;
+            },
+          });
+        });
+    } catch (err) {
+      throw err;
+    }
   }
+
   return (
     <>
       <Box
@@ -46,35 +110,66 @@ export default function InsertOrEditComponent() {
         >
           <FormControl isRequired>
             <FormLabel color={"#121212"}>Nome do funcionario</FormLabel>
-            <Input name="name" color={"#121212"} type="name" />
+            <Input
+              onChange={e => setName(e.target.value)}
+              value={name}
+              name="name"
+              color={"#121212"}
+              type="name"
+            />
           </FormControl>
           <FormControl isRequired>
             <FormLabel color={"#121212"}>Cargo</FormLabel>
-            <Input name="cargo" color={"#121212"} type="text" />
+            <Input
+              value={office}
+              onChange={e => setOffice(e.target.value)}
+              name="cargo"
+              color={"#121212"}
+              type="text"
+            />
           </FormControl>
           <div
             style={{display: "flex", gap: 20, width: "100%", flexWrap: "wrap"}}
           >
             <FormControl isRequired style={{flex: 1}}>
               <FormLabel color={"#121212"}>Departamento</FormLabel>
-              <Select name="dep" placeholder="Selecione">
+              <Select
+                value={departament}
+                onChange={e => setDepartament(e.target.value)}
+                name="dep"
+                placeholder="Selecione"
+              >
                 <option style={{color: "#000"}} value="rh">
                   Rh
                 </option>
-                <option style={{color: "#000"}} value="Software">
+                <option style={{color: "#000"}} value="software">
                   Software
                 </option>
-                <option style={{color: "#000"}} value="Financeiro">
+                <option style={{color: "#000"}} value="financeiro">
                   Financeiro
                 </option>
               </Select>
             </FormControl>
             <FormControl isRequired style={{flex: 1}}>
               <FormLabel color={"#121212"}>Data de admissão</FormLabel>
-              <Input name="date" type="date" color={"#121212"} />
+              <Input
+                value={
+                  admissionDate &&
+                  `${dayjs(admissionDate).format("YYYY-MM-DD")}`
+                }
+                onChange={e => setAdmissionDate(e.target.value)}
+                name="date"
+                type="date"
+                color={"#121212"}
+              />
             </FormControl>
           </div>
-          <Input className="submit-btn" color={"#121212"} type="submit" value="Finalizar"></Input>
+          <Input
+            className="submit-btn"
+            color={"#121212"}
+            type="submit"
+            value="Finalizar"
+          ></Input>
         </form>
       </Box>
     </>

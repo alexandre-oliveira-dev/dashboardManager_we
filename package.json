@@ -12,9 +12,13 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@next-auth/firebase-adapter": "^0.0.2-canary.207",
+    "axios": "^1.6.8",
+    "dayjs": "^1.11.11",
     "firebase": "^10.12.0",
     "framer-motion": "^11.2.3",
     "next": "14.2.3",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1"
