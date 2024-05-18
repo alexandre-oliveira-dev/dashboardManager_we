@@ -1,6 +1,6 @@
 [
     {
-        "source": "/index.html",
+        "source": "./.next/server/app/index.html",
         "destination": "/",
         "statusCode": 301
     }
