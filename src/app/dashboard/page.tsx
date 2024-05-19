@@ -30,10 +30,11 @@ export default function Dashboard() {
   useEffect(() => {
     setLoad(true);
     async function get() {
-      const res = await getEmployes(5, user?.email).finally(() =>
-        setLoad(false)
-      );
-      setData(res?.data?.data);
+      const res = await getEmployes(1).finally(() => setLoad(false));
+      if (user?.email) {
+        //@ts-ignore
+        setData(res?.data?.data.filter(item => item.userId === user.email));
+      }
       setPageInfo(res?.data.pageInfo);
     }
     get();
@@ -45,10 +46,11 @@ export default function Dashboard() {
 
   async function refetch() {
     setLoad(true);
-    const newDate = (
-      await getEmployes(5, user?.email).finally(() => setLoad(false))
-    ).data;
-    return setData(newDate?.data);
+    const newDate = (await getEmployes(1).finally(() => setLoad(false))).data;
+    return setData(
+      //@ts-ignore
+      newDate?.data?.filter(item => item.userId === user.email)
+    );
   }
 
   const Pagination = () => {
@@ -64,7 +66,7 @@ export default function Dashboard() {
               marginLeft: "5px",
             }}
             onClick={async () => {
-              const res = await getEmployes(i + 1, user?.email).finally(() =>
+              const res = await getEmployes(i + 1).finally(() =>
                 setLoad(false)
               );
               setData(res?.data?.data);

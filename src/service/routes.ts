@@ -7,7 +7,7 @@ export interface Employes{
   admissionDate: string;
   office: string;
   departament: string;
-  userId?: string;
+  userId: string;
   }
 }
 
@@ -19,6 +19,8 @@ export type EmployesProps = {
   admissionDate: Date;
   office: string;
   departament: string;
+  userId: string;
+
     }],
     pageInfo:{
     page:number,
@@ -29,8 +31,8 @@ export type EmployesProps = {
 }
 }
 
-const getEmployes = async (page?:number, userId?:string) => {
-    const res:EmployesProps = await api.get('/employes',{params:{page:page || 1,userId:userId}})
+const getEmployes = async (page?:number) => {
+    const res:EmployesProps = await api.get(`/employes?page=${page}`)
     return res
 }
 const getEmploye = async (id:string) => {
