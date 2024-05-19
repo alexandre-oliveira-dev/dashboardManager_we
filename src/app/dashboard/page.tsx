@@ -94,7 +94,7 @@ export default function Dashboard() {
             </Text>
             <TableContainer className="table-box">
               <Link
-                href="/dashboard/new"
+                href="/new"
                 _hover={{
                   backgroundColor: "rgb(21, 255, 87) !important",
                   color: "#fff",
@@ -175,7 +175,7 @@ export default function Dashboard() {
                           <Td>
                             <div style={{display: "flex", gap: 10}}>
                               <Link
-                                href={`/dashboard/edit/${item._id}`}
+                                href={`/edit/${item._id}`}
                                 style={{
                                   width: "40px",
                                   height: "40px",
