@@ -35,12 +35,13 @@ export default function Dashboard() {
       const res = await getEmployes(1).finally(() => setLoad(false));
       if (user?.email) {
         //@ts-ignore
-        setData(res?.data?.data.filter(item => item.userId === user.email));
+        setData(res?.data?.data.filter(item => item.userId === user.uid));
       }
       setPageInfo(res?.data.pageInfo);
     }
     get();
-  }, [user?.email]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.uid]);
 
   if (!user) {
     return null;
