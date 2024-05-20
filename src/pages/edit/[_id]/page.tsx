@@ -1,12 +1,12 @@
 "use client";
 
 import {useEffect, useState} from "react";
-import InsertOrEditComponent from "@/app/components/insert-edit-employe";
-import MainSectionComponent from "@/app/components/mainSection/mainSection.component";
-import NavBarComponent from "@/app/components/navBar/navbar.component";
+import InsertOrEditComponent from "@/pages/components/insert-edit-employe";
+import MainSectionComponent from "@/pages/components/mainSection/mainSection.component";
+import NavBarComponent from "@/pages/components/navBar/navbar.component";
 import {Text} from "@chakra-ui/react";
 import {Employes, getEmploye} from "@/service/routes";
-import {useAuth} from "@/app/useAuth";
+import {useAuth} from "@/pages/useAuth";
 
 export default function EditEmployeComponent() {
   const router = window.location.href;
