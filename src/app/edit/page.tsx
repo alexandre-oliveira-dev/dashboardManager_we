@@ -10,16 +10,16 @@ import {useAuth} from "@/app/useAuth";
 
 export default function EditEmployeComponent() {
   const [initalValues, setInitialValues] = useState<Employes["data"]>();
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
     async function getInitialValues() {
       if (!user) {
         return null;
       }
-      const router = window.location.href;
+      const router = window.location.search;
 
-      const id = router.split("edit/")[1];
+      const id = router.split("=")[1];
       if (id) {
         const res = await getEmploye(id);
         setInitialValues(res.data);

@@ -178,7 +178,7 @@ export default function Dashboard() {
                             <div style={{display: "flex", gap: 10}}>
                               <Link
                                 href={{
-                                  pathname: "/edit/[_id]",
+                                  pathname: "/edit",
                                   query: {_id: item._id},
                                 }}
                                 style={{
