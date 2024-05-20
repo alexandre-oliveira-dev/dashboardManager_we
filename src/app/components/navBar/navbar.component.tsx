@@ -1,10 +1,10 @@
 import {Button, Text} from "@chakra-ui/react";
 import "./style.css";
 import {getAuth} from "firebase/auth";
-import {app} from "@/pages/auth/firebase";
+import {app} from "@/app/auth/firebase";
 import {signOut} from "firebase/auth";
 import {useRouter} from "next/navigation";
-import {useAuth} from "@/pages/useAuth";
+import {useAuth} from "@/app/useAuth";
 import Link from "next/link";
 
 export default function NavBarComponent() {

@@ -12,7 +12,7 @@ import {Employes, createEmploye, updateEmploye} from "@/service/routes";
 import {useEffect, useState} from "react";
 import dayjs from "dayjs";
 import {useRouter} from "next/navigation";
-import {useAuth} from "@/pages/useAuth";
+import {useAuth} from "@/app/useAuth";
 
 interface InsertProps {
   data?: Employes["data"] | undefined;

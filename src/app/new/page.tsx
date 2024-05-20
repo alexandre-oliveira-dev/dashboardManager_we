@@ -1,13 +1,12 @@
-"use client"
+"use client";
 
-import InsertOrEditComponent from "@/pages/components/insert-edit-employe";
-import MainSectionComponent from "@/pages/components/mainSection/mainSection.component";
-import NavBarComponent from "@/pages/components/navBar/navbar.component";
-import {useAuth} from "@/pages/useAuth";
+import InsertOrEditComponent from "@/app/components/insert-edit-employe";
+import MainSectionComponent from "@/app/components/mainSection/mainSection.component";
+import NavBarComponent from "@/app/components/navBar/navbar.component";
+import {useAuth} from "@/app/useAuth";
 import {Text} from "@chakra-ui/react";
 
 export default function NewEmployeComponent() {
-
   const {user} = useAuth();
   if (!user) {
     return null;

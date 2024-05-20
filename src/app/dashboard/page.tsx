@@ -13,9 +13,9 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import "./index.css";
-import NavBarComponent from "@/pages/components/navBar/navbar.component";
+import NavBarComponent from "@/app/components/navBar/navbar.component";
 import {FiEdit, FiTrash} from "react-icons/fi";
-import MainSectionComponent from "@/pages/components/mainSection/mainSection.component";
+import MainSectionComponent from "@/app/components/mainSection/mainSection.component";
 import React, {useEffect, useState} from "react";
 import {EmployesProps, deleteEmploye, getEmployes} from "@/service/routes";
 import {useAuth} from "../useAuth";
