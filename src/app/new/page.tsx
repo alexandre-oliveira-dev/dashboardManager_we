@@ -17,7 +17,7 @@ export default function NewEmployeComponent() {
       <MainSectionComponent
         components={
           <>
-            <Text color={"#fff"} fontSize={"4xl"}>
+            <Text color={"#121212"} fontSize={"4xl"}>
               Novo Funcionario
             </Text>
 

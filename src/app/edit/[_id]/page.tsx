@@ -9,13 +9,16 @@ import {Employes, getEmploye} from "@/service/routes";
 import {useAuth} from "@/app/useAuth";
 
 export default function EditEmployeComponent() {
-  const router = window.location.href;
   const [initalValues, setInitialValues] = useState<Employes["data"]>();
   const {user} = useAuth();
-  console.log("🚀 ~ EditEmployeComponent ~ user:", user);
 
   useEffect(() => {
     async function getInitialValues() {
+      if (!user) {
+        return null;
+      }
+      const router = window.location.href;
+
       const id = router.split("edit/")[1];
       if (id) {
         const res = await getEmploye(id);
@@ -23,18 +26,15 @@ export default function EditEmployeComponent() {
       }
     }
     getInitialValues();
-  }, [router]);
+  }, [user]);
 
-  if (!user) {
-    return null;
-  }
   return (
     <div style={{display: "flex"}}>
       <NavBarComponent />
       <MainSectionComponent
         components={
           <>
-            <Text color={"#fff"} fontSize={"4xl"}>
+            <Text color={"#121212"} fontSize={"4xl"}>
               Editar Funcionario
             </Text>
             <InsertOrEditComponent isCreate={false} data={initalValues} />

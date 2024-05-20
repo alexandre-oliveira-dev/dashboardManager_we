@@ -48,7 +48,7 @@ export default function InsertOrEditComponent({data, isCreate}: InsertProps) {
       admissionDate: dayjs(admissionDate).toISOString(),
       departament,
       office,
-      userId: user?.email,
+      userId: user?.uid,
     };
 
     try {

@@ -2,6 +2,7 @@
 
 import {
   Button,
+  Link,
   Spinner,
   Table,
   TableContainer,
@@ -20,7 +21,6 @@ import MainSectionComponent from "@/app/components/mainSection/mainSection.compo
 import React, {useEffect, useState} from "react";
 import {EmployesProps, deleteEmploye, getEmployes} from "@/service/routes";
 import {useAuth} from "../useAuth";
-import Link from "next/link";
 
 export default function Dashboard() {
   const [data, setData] = useState<EmployesProps["data"]["data"]>();
@@ -91,16 +91,16 @@ export default function Dashboard() {
       <MainSectionComponent
         components={
           <>
-            <Text color={"#fff"} fontSize={"6xl"}>
+            <Text color={"#121212"} fontSize={"6xl"}>
               Funcionarios
             </Text>
             <TableContainer className="table-box">
               <Link
                 href="/new"
-                /* _hover={{
+                _hover={{
                   backgroundColor: "rgb(21, 255, 87) !important",
                   color: "#fff",
-                }} */
+                }}
                 style={{
                   float: "inline-end",
                   margin: "0 0 10px 0",
