@@ -51,7 +51,7 @@ export default function Dashboard() {
     const newDate = (await getEmployes(1).finally(() => setLoad(false))).data;
     return setData(
       //@ts-ignore
-      newDate?.data?.filter(item => item.userId === user.email)
+      newDate?.data?.filter(item => item.userId === user?.uid)
     );
   }
 
