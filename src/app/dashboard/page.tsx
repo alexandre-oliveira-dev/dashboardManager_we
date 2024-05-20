@@ -28,6 +28,7 @@ export default function Dashboard() {
   const [load, setLoad] = useState(false);
   const toast = useToast();
   const {user} = useAuth();
+
   useEffect(() => {
     setLoad(true);
     async function get() {

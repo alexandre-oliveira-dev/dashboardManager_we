@@ -12,13 +12,8 @@ export default function NavBarComponent() {
   const {push} = useRouter();
   const {user} = useAuth();
 
-  if (!user) {
-    return null;
-  }
-
   async function logout() {
     await signOut(auth).then(() => {
-      localStorage.removeItem("user");
       push("/");
     });
   }

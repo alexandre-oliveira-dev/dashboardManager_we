@@ -23,8 +23,9 @@ export default function Home() {
     event.preventDefault();
 
     if (email && password) {
-      await signInWithEmailAndPassword(auth, email, password).then(
-        (value: any) => {
+      await signInWithEmailAndPassword(auth, email, password)
+        .catch(err => console.error(err))
+        .then((value: any) => {
           localStorage.setItem(
             "user",
             JSON.stringify({
@@ -34,8 +35,7 @@ export default function Home() {
           );
 
           window.location.href = "./dashboard";
-        }
-      );
+        });
     }
   }
   return (
