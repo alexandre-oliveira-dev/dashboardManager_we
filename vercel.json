@@ -1,21 +1,8 @@
 {
     "rewrites": [
         {
-            "source": "/",
+            "source": "/(.*)",
             "destination": "/"
-        },
-        {
-            "source": "/dashboard",
-            "destination": "/dashboard"
-        },
-        {
-            "source": "/new",
-            "destination": "/new"
-        },
-        {
-            "source": "/edit/:_id",
-            "destination": "/edit/:_id"
         }
-        
     ]
 }
