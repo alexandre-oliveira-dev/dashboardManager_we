@@ -12,7 +12,7 @@ export default function EditEmployeComponent() {
   const [initalValues, setInitialValues] = useState<Employes["data"]>();
   const {user} = useAuth();
 
-  useEffect(() => {
+/*   useEffect(() => {
     async function getInitialValues() {
       if (!user) {
         return null;
@@ -27,7 +27,7 @@ export default function EditEmployeComponent() {
     }
     getInitialValues();
   }, [user]);
-
+ */
   return (
     <div style={{display: "flex"}}>
       <NavBarComponent />
@@ -37,8 +37,8 @@ export default function EditEmployeComponent() {
             <Text color={"#121212"} fontSize={"4xl"}>
               Editar Funcionario
             </Text>
-            <InsertOrEditComponent isCreate={false} data={initalValues} />
-          </>
+{/*             <InsertOrEditComponent isCreate={false} data={initalValues} />
+ */}          </>
         }
       />
     </div>
