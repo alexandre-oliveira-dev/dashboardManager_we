@@ -16,7 +16,7 @@ export default function Home() {
   const auth = getAuth(app);
 
   if (user) {
-    return push("/dashboard");
+    return push("./dashboard");
   }
 
   async function login(event: any) {
@@ -32,7 +32,8 @@ export default function Home() {
               token: value.user.accessToken,
             })
           );
-          push("/dashboard");
+
+          push("./dashboard");
         }
       );
     }
