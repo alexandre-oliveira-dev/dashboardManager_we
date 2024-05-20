@@ -32,7 +32,7 @@ export default function Home() {
               token: value.user.accessToken,
             })
           );
-          push("/dashboard");
+          window.location.href = "/dashboard";
         }
       );
     }
