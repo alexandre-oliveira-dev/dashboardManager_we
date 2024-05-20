@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Button,
   Spinner,
@@ -12,7 +13,7 @@ import {
   Tr,
   useToast,
 } from "@chakra-ui/react";
-import "../index.css";
+import "./index.css";
 import NavBarComponent from "@/app/components/navBar/navbar.component";
 import {FiEdit, FiTrash} from "react-icons/fi";
 import MainSectionComponent from "@/app/components/mainSection/mainSection.component";
